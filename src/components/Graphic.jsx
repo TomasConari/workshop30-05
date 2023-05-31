@@ -1,5 +1,7 @@
 export const Graphic = () => {
     return(
-        <input type="range" min="1" max="10" step="1"></input>
+        <div id="flex1">
+            <h1 className="tittle2">Sales Activity</h1>
+        </div>
     );
 };

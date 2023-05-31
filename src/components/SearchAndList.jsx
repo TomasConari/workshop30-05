@@ -22,10 +22,11 @@ export const SearchAndList = () => {
     };
     if(list.length > 0){
         return(
-        <div>
-            <input onChange={fetchSearch} placeholder="Search" ></input>
-            <h3>Cryptos</h3>
-            <ul>
+        <div id="flex2">
+            <h1 className="tittle">Control Panel</h1>
+            <input className="input" onChange={fetchSearch} placeholder="Enter your search request..." ></input>
+            <h3 className="borderBottom">Trending cryptos</h3>
+            <ul className="flex list">
                 <ListedItems 
                     keyProp={list[0].id}
                     srcProp={list[0].image}

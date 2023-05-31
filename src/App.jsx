@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Graphic style={{backgroundColor: "black"}} />
+      <Graphic />
       <SearchAndList />
     </div>
   );
