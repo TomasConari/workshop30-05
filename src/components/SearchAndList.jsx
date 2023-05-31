@@ -6,6 +6,23 @@ export const SearchAndList = () => {
 
     const [list, setList] = useState([]);
 
+    const fetchSearch = async (event) => {
+        const searchWord = event.target.value;
+        const rawData = await fetch(`https://api.coingecko.com/api/v3/search?query=${searchWord}`);
+        const searchDataJson = await rawData.json();
+        const dataArr = searchDataJson.coins;
+        const sixCrypto = dataArr.slice(0, 6);
+        const selectedData = sixCrypto.map((crypto) => {
+            return{
+                id: crypto.id,
+                symbol: crypto.symbol,
+                name: crypto.name,
+                image: crypto.large,
+            };
+        });
+        setList(selectedData);
+      };
+
     const fetchData = async () => {
     const newList = await fetchList();
         setList(newList);
@@ -16,8 +33,9 @@ export const SearchAndList = () => {
     };
 
     if(list.length > 0){
-        return (
+        return(
         <div>
+            <input onBlur={fetchSearch} placeholder="Search" ></input>
             <ul>
                 <ListedItems 
                     keyProp={list[0].id}
@@ -73,4 +91,3 @@ export const SearchAndList = () => {
         );
     };
 };
-
