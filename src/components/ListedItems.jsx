@@ -11,15 +11,13 @@ export const ListedItems = ({ keyProp, srcProp, nameProp, symbolProp, priceProp 
     <li key={keyProp} style={elementStyle}>
       <img src={srcProp} width="5%" height="5%" alt={`${nameProp} icon`} />
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <h4>
+        <p>
           {nameProp}
           <br />
-          <p>
-            {symbolProp}
-          </p>
-        </h4>
+          {symbolProp}
+        </p>
       </div>
-      <h6>{priceProp}</h6>
+      <p>${priceProp}</p>
     </li>
   );
 };

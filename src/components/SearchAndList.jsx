@@ -20,11 +20,11 @@ export const SearchAndList = () => {
     if(list.length === 0){
         fetchData();
     };
-
     if(list.length > 0){
         return(
         <div>
             <input onChange={fetchSearch} placeholder="Search" ></input>
+            <h3>Cryptos</h3>
             <ul>
                 <ListedItems 
                     keyProp={list[0].id}
