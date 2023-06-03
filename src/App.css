@@ -1,23 +1,25 @@
 .App {
-  margin: 5%;
+  margin: 2%;
   display: flex;
   flex-direction: row;
   border-radius: 20px;
   border: solid 5px black;
   background-color: white;
+  max-height: 90vh;
+  font-family: "Arial Neue", Arial, sans-serif;
 }
 #flex1{
-  flex-basis: 70%;
+  flex-basis: 65%;
   margin-top: 2%;
   margin-left: 3%;
   margin-right: 5%;
-  height: 140vh;
+  height: 80vh;
   background-color: black;
   border-radius: 20px;
   border: solid 5px black;
 }
 #flex2{
-  flex-basis: 30%;
+  flex-basis: 35%;
   margin-top: 1%;
   margin-right: 5%;
   margin-bottom: 1%;
@@ -29,10 +31,11 @@
 }
 .listElement{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
   align-items: center;
+  justify-content: center;
+}
+.listElement img {
+  margin-right: 10px; /* Ajusta el margen derecho según tus necesidades */
 }
 .input{
   background-color: #eff1f7;
@@ -41,14 +44,20 @@
   height: 50px;
   width: 100%;
 }
+.input:focus {
+  outline: none;
+}
 .borderBottom{
   padding: 5%;
-  border-bottom: solid 1px black;
+  border-bottom: solid 2px #ebebeb;
   font-weight: 600;
+  text-align: left;
+  padding-left: 0px;
 }
 .listOutsideElement{
-  height: 100px;
+  height: 80px;
   margin-bottom: 1%;
+  list-style: none;
 }
 .tittle{
   font-weight: 400;
@@ -59,4 +68,39 @@
   margin-left: 5%;
   font-size: 60px;
   padding-top: -2%;
+}
+.nameAndSymbol{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.nameAndSymbol p{
+  font-weight: 550;
+  margin-bottom: -2px;
+  margin-top: -2px;
+  text-align: left;
+}
+.symbol{
+  color: #8d8d8d;
+}
+.list{
+  max-height: 50%;
+  overflow-y: auto;
+  margin-left: -11%;
+}
+.price{
+  font-weight: 550;
+  margin-left: auto;
+  margin-top: 0px;
+}
+.list::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+.list::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+.list::-webkit-scrollbar-track {
+  background-color: transparent;
 }
