@@ -26,3 +26,10 @@ export const fetchListSearch = async (value) => {
     });
     return selectedData;
 };
+export const fetchGraph = async (value) => {
+    const rawData = await fetch(`https://api.coingecko.com/api/v3/coins/${value}/market_chart?vs_currency=usd&days=10&interval=daily`);
+    const dataJson = await rawData.json();
+    const priceArr = dataJson.prices;
+    const prices = priceArr.map((array) => array[1]);
+    return prices;
+};

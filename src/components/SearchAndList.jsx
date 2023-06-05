@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchListSearch, fetchList } from "./fetchList";
+import { fetchListSearch, fetchList } from "./fetch";
 
 export const SearchAndList = ({toGraphFunc}) => {
 
@@ -33,7 +33,7 @@ export const SearchAndList = ({toGraphFunc}) => {
             <h3 className="borderBottom">Trending cryptos</h3>
             <ul className="flex list">
                 {list.map((el) => (
-                    <li className="listOutsideElement" key={el.id} onClick={toGraphFunc}>
+                    <li className="listOutsideElement" key={el.id} onClick={(event) => toGraphFunc(event)}>
                         <div className="listElement">
                             <img
                                 width="40px" 
