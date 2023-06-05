@@ -13,7 +13,7 @@
   margin-top: 2%;
   margin-left: 3%;
   margin-right: 5%;
-  height: 80vh;
+  height: 83vh;
   background-color: black;
   border-radius: 20px;
   border: solid 5px black;
@@ -35,7 +35,7 @@
   justify-content: center;
 }
 .listElement img {
-  margin-right: 10px; /* Ajusta el margen derecho según tus necesidades */
+  margin-right: 10px;
 }
 .input{
   background-color: #eff1f7;
@@ -58,6 +58,7 @@
   height: 80px;
   margin-bottom: 1%;
   list-style: none;
+  cursor: pointer;
 }
 .tittle{
   font-weight: 400;
@@ -103,4 +104,11 @@
 }
 .list::-webkit-scrollbar-track {
   background-color: transparent;
+}
+.chart-container {
+  background-color: black;
+  height: 50vh;
+  width: 80vh;
+  margin-top: 10%;
+  margin-left: 5%;
 }

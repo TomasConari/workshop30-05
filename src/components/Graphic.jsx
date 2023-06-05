@@ -1,55 +1,81 @@
-import React, { useState } from 'react';
-import Chart from 'chart.js';
-import { fetchGraph } from './fetch';
+import React, { useState, useEffect } from 'react';
+import { fetchGraph } from '../helper/fetch';
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, Filler } from "chart.js";
 
-export const ChartComponent = ({graphic}) => {
-    const [chart, setChart] = useState(null);
-    const [data, setData] = useState([]);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, Filler);
 
-    const fetchData = async () => {
-        const graphData = await fetchGraph(graphic);
-        setData(graphData);
-    };
+export const ChartComponent = ({ graphic = "bitcoin" }) => {
+  const [price, setPrice] = useState([]);
+  const [dates, setDates] = useState([]);
 
-    if (data.length === 0) {
-        fetchData();
+  const fetchData = async () => {
+    const graphData = await fetchGraph(graphic);
+    if (graphData.price && Array.isArray(graphData.price)) {
+      const filledPrice = fillArray(graphData.price, 10, 0);
+      setPrice(filledPrice);
     }
+    if (graphData.dates && Array.isArray(graphData.dates)) {
+      setDates(graphData.dates);
+    }
+  };
 
-    const createChart = () => {
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const newChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: Array.from({ length: data.length }, (_, i) => `Posición ${i + 1}`),
-            datasets: [
-            {
-                label: 'Dataset',
-                data: data,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }
-            ]
+  useEffect(() => {
+    if (price.length === 0) {
+      fetchData();
+    }
+  }, []);
+
+  const fillArray = (arr, length, defaultValue) => {
+    if (arr.length < length) {
+      const filledArr = [...arr];
+      while (filledArr.length < length) {
+        filledArr.push(defaultValue);
+      }
+      return filledArr;
+    }
+    return arr.slice(0, length);
+  };
+
+  const options = {
+    indexAxis: 'y',
+    scales: {
+      y: {
+        display: false,
+      },
+      x: {
+        ticks: {
+          display: false,
         },
-        options: {
-            scales: {
-            y: {
-                beginAtZero: true
-            }
-            }
-        }
-        });
+        grid: {
+          display: false,
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
 
-        setChart(newChart);
+  function BarChart() {
+    const data = {
+      labels: dates,
+      datasets: [
+        {
+          data: price,
+          backgroundColor: "#595d6f",
+        },
+      ],
     };
-
-    if (chart === null) {
-        createChart();
-    }
 
     return (
-        <div>
-        <canvas id="myChart" />
-        </div>
+      <div className="chart-container">
+        <Bar data={data} options={options} />
+      </div>
     );
+  }
+
+  return <BarChart />;
 };
