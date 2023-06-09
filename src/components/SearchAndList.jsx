@@ -1,39 +1,26 @@
-import { useState } from "react";
-import { fetchListSearch, fetchList } from "../helper/fetch";
+export const SearchAndList = ({ data, changeInput}) => {
 
-export const SearchAndList = ({ toGraphFunc }) => {
+    if(data.length > 0){
 
-    const [list, setList] = useState([]);
+        const handleChange = (event) => {
+            const newInput = event.target.value;
+            changeInput(newInput);
+        };
 
-    const fetchData = async () => {
-        const newList = await fetchList();
-        setList(newList);
-    };
-
-    const fetchSearch = async (event) => {
-        const searchWord = event.target.value;
-        const updatedList = await fetchListSearch(searchWord);
-        setList(updatedList);
-    };
-
-    if (list.length === 0) {
-        fetchData();
-    };
-    if (list.length > 0) {
-        return (
+        return(
             <div id="flex2">
                 <h1 className="tittle">Control Panel</h1>
                 <div className="input-container">
                     <input
                         className="input"
-                        onChange={fetchSearch}
+                        onChange={(event) => handleChange(event)}
                         placeholder="   Enter your search request... "
                     />
                 </div>
                 <h3 className="borderBottom">Trending cryptos</h3>
                 <ul className="flex list">
-                    {list.map((el) => (
-                        <li className="listOutsideElement" key={el.id} onClick={(event) => toGraphFunc(event)}>
+                    {data.map((el) => (
+                        <li className="listOutsideElement" key={el.id}>
                             <div className="listElement">
                                 <img
                                     width="40px"
@@ -54,10 +41,18 @@ export const SearchAndList = ({ toGraphFunc }) => {
                 </ul>
             </div>
         );
-    } else {
-        fetchData();
-        return (
+    }else{
+        return(
             <div>
+                <h1 className="tittle">Control Panel</h1>
+                <div className="input-container">
+                    <input
+                        className="input"
+                        onChange={(event) => changeInput(event.target.value)}
+                        placeholder="   Enter your search request... "
+                    />
+                </div>
+                <h3 className="borderBottom">Trending cryptos</h3>
                 <h3>Loading...</h3>
             </div>
         );
