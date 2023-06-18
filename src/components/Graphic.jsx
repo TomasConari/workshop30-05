@@ -6,6 +6,8 @@ export const ChartComponent = ({ graphic }) => {
   const [dates, setDates] = useState([]);
 
   const fetchData = async () => {
+
+    //Test
     return (
       <div className="chart-container">
       </div>
