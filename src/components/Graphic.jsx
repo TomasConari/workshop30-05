@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchGraph } from '../helper/fetch';
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, Filler } from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, Filler);
-
-export const ChartComponent = ({ graphic = "bitcoin" }) => {
+export const ChartComponent = ({ graphic }) => {
   const [price, setPrice] = useState([]);
   const [dates, setDates] = useState([]);
 
