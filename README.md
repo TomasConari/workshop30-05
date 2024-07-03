@@ -1,4 +1,4 @@
-# workshop30-05
+# Crypto Currency Web App
 
 This was an exercise that fetched data from the Coingecko API to display 
 cryptocurrencies on the screen. The application included a search bar to 
